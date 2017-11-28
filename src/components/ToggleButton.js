@@ -1,7 +1,6 @@
 import React, { Component } from 'react';  
-import ReactDOM from 'react-dom';
-
-class ToggleButton extends Component{
+ 
+export class ToggleButton extends Component {
   constructor(){
     super();
   
@@ -9,13 +8,25 @@ class ToggleButton extends Component{
       isEnabled: false
     }
   }
+  
+  toggleClick = (event)=>{
+    event.preventDefault()
+    if (this.state.isEnabled === false){
+      this.setState({
+        isEnabled: true,
+      })
+    } else {
+      this.setState({
+        isEnabled: false,
+      })
+    }
+  }
+  
   render(){
     return(
-      <button className='toggle-button'>
+      <button className='toggle-button' onClick={this.toggleClick}>
         I am toggled {this.state.isEnabled ? 'on' : 'off'}
       </button>
     )
   }
 };
-
-export default ToggleButton;
